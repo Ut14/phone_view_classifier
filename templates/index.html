@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phone View Classifier</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        input[type="file"] {
+            margin: 20px;
+        }
+        .prediction {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <h1>📱 Phone View Classifier</h1>
+    <form action="/predict-image" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <br>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <div class="prediction">
+            🔍 Predicted View: <strong>{{ prediction }}</strong>
+        </div>
+    {% elif error %}
+        <div class="prediction" style="color: red;">
+            ❌ Error: {{ error }}
+        </div>
+    {% endif %}
+</body>
+</html>
