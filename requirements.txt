@@ -1,8 +1,9 @@
 fastapi
 uvicorn
 transformers
-torch
+torch==2.2.2+cpu
 joblib
 pillow
 scikit-learn
 python-multipart
+--extra-index-url https://download.pytorch.org/whl/cpu
