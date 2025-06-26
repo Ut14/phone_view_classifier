@@ -9,6 +9,7 @@ from transformers import CLIPProcessor, CLIPModel
 import io
 import os
 from dotenv import load_dotenv
+from huggingface_hub import hf_hub_download
 
 # --- Load environment variables ---
 load_dotenv()
@@ -27,7 +28,11 @@ clip_processor = CLIPProcessor.from_pretrained(
 )
 
 # --- Load SVM Model ---
-svm_model = joblib.load("svm_phone_view_model.joblib")
+svm_path = hf_hub_download(
+    repo_id="Ut14/clip-phone-view",
+    filename="svm_phone_view_model.joblib"
+)
+svm_model = joblib.load(svm_path)
 label_map = {0: "front", 1: "back", 2: "side"}
 
 # --- Extract embedding ---
